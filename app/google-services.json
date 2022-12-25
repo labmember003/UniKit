@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "453626538064",
+    "project_id": "usar-companion",
+    "storage_bucket": "usar-companion.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453626538064:android:6fe491412f0d09bce64955",
+        "android_client_info": {
+          "package_name": "com.falcon.unikit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453626538064-11pf2srp386l5h4mplhrfr6ivkpk72f6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz5igX8JFl2OBCRqvjpzp07-0Ek8dmAx8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453626538064-11pf2srp386l5h4mplhrfr6ivkpk72f6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

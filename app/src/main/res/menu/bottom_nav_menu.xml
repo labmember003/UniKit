@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation1"
+        android:icon="@drawable/notes"
+        android:title="Notes Files"
+        />
+
+    <item
+        android:id="@+id/navigation2"
+        android:icon="@drawable/exam"
+        android:title="Papers" />
+
+    <item
+        android:id="@+id/navigation3"
+        android:icon="@drawable/book"
+        android:title="Books" />
+
+    <item
+        android:id="@+id/navigation4"
+        android:icon="@drawable/playlist"
+        android:title="Playlists" />
+
+    <item
+        android:id="@+id/navigation5"
+        android:icon="@drawable/syllabusicon"
+        android:title="Syllabus" />
+
+
+
+
+</menu>

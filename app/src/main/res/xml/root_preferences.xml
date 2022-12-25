@@ -1,0 +1,108 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="General"
+        app:iconSpaceReserved="false"
+        >
+
+        <EditTextPreference
+            app:key="name"
+            app:title="@string/name_title"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false"
+            />
+        <ListPreference
+            app:entries="@array/year_entries"
+            app:entryValues="@array/year_values"
+            app:key="yearList"
+            app:title="@string/year_title"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false"
+            />
+        <ListPreference
+            app:entries="@array/branch_entries"
+            app:entryValues="@array/branch_values"
+            app:key="branchList"
+            app:title="@string/branch_title"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false"
+            />
+        <Preference
+            app:key="contact"
+            app:title="Contact Us"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            app:key="reviewCollege"
+            app:title="Review Your College And Earn !"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://tinyurl.com/shikshausar"
+                />
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory app:title="About"
+        app:iconSpaceReserved="false"
+        >
+        <Preference
+            app:key="about"
+            app:title="@string/About"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false"/>
+
+    </PreferenceCategory>
+
+
+    <PreferenceCategory app:title="Developer"
+        app:iconSpaceReserved="false">
+        <Preference
+            app:key="bug"
+            app:title="Bug Report"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false"/>
+        <Preference
+            app:key="resources"
+            app:title="Resources Used"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://sites.google.com/view/usarcompanion/resources-used"
+                />
+        </Preference>
+        <Preference
+            app:key="libraries"
+            app:title="Open Source Libraries"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false"
+            />
+
+        <Preference
+            app:key="terms"
+            app:title="Terms And Conditions"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://sites.google.com/view/usarcompanion/terms-conditions"
+                />
+        </Preference>
+
+        <Preference
+            app:key="privacy"
+            app:title="Privacy Policy"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://sites.google.com/view/usarcompanion/home"
+            />
+        </Preference>
+
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

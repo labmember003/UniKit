@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/resources">
+
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.falcon.unikit.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_campusMap"
+            app:destination="@id/campusMap" />
+
+        <action
+            android:id="@+id/action_FirstFragment_to_subjectsFragment"
+            app:destination="@id/subjectsFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_BranchesTabbedFragment"
+            app:destination="@id/BranchesTabbedFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_resources"
+            app:destination="@id/resources" />
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.falcon.unikit.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/campusMap"
+        android:name="com.falcon.unikit.CampusMap"
+        android:label="Campus Map"
+        tools:layout="@layout/fragment_campus_map" />
+
+    <fragment
+        android:id="@+id/subjectsFragment"
+        android:name="com.falcon.unikit.subjects.SubjectsFragment"
+        android:label="subjectsFragment" >
+        <action
+            android:id="@+id/action_subjectsFragment_to_contentActivity"
+            app:destination="@id/contentActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/contentActivity"
+        android:name="com.falcon.unikit.ContentActivity"
+        android:label="ContentActivity" >
+
+        </activity>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.falcon.unikit.ui.home.NotesFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_contentActivity"
+            app:destination="@id/contentActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/BranchesTabbedFragment"
+        android:name="com.falcon.unikit.BranchesTabbedFragment"
+        android:label="fragment_blank"
+        tools:layout="@layout/fragment_blank" >
+        <action
+            android:id="@+id/action_BranchesTabbedFragment_to_contentActivity"
+            app:destination="@id/contentActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/resources"
+        android:name="com.falcon.unikit.Resources"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_resources" >
+        <action
+            android:id="@+id/action_resources_to_BranchesTabbedFragment"
+            app:destination="@id/BranchesTabbedFragment"
+            app:enterAnim="@anim/fade_in"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.falcon.unikit.ui.main.SettingsFragment"
+        android:label="Settings" />
+    <fragment
+        android:id="@+id/webviewFragment"
+        android:name="com.falcon.unikit.ui.main.WebviewFragment"
+        android:label="Result"
+        tools:layout="@layout/fragment_webview" />
+    <fragment
+        android:id="@+id/PrintFragment"
+        android:name="com.falcon.unikit.ui.main.PrintFragment"
+        android:label="Prints"
+        tools:layout="@layout/fragment_print" />
+    <fragment
+        android:id="@+id/MerchandiseFragment"
+        android:name="com.falcon.unikit.ui.main.MerchandiseFragment"
+        android:label="Merchandise"
+        tools:layout="@layout/fragment_merchandise" />
+    <fragment
+        android:id="@+id/SocietyFragment"
+        android:name="com.falcon.unikit.ui.main.SocietyFragment"
+        android:label="Societies"
+        tools:layout="@layout/fragment_society" />
+</navigation>
+<!--
+app:exitAnim="@anim/fade_out"
+-->

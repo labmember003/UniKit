@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/resources"
+            android:icon="@drawable/ic_baseline_edit_24"
+            android:title="@string/resources" />
+        <item
+            android:id="@+id/campusMap"
+            android:icon="@drawable/ic_baseline_map_24"
+            android:title="Campus Map"
+            />
+        <item
+            android:id="@+id/getDirections"
+            android:icon="@drawable/ic_baseline_directions_24"
+            android:title="@string/get_directions"
+            android:checkable="false" />
+        <item
+            android:id="@+id/webviewFragment"
+            android:icon="@drawable/ic_baseline_result_right_alt_24"
+            android:title="Result"
+            />
+        <!--
+        <item
+            android:id="@+id/SocietyFragment"
+            android:icon="@drawable/ic_baseline_people_24"
+            android:title="Societies"
+            />
+        <item
+            android:id="@+id/PrintFragment"
+            android:icon="@drawable/ic_baseline_print_24"
+            android:title="Get Printed Notes"
+            />
+            -->
+        <item
+            android:id="@+id/MerchandiseFragment"
+            android:icon="@drawable/ic_baseline_accessibility_24"
+            android:title="USAR Merchandise"
+            />
+    </group>
+
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/share"
+            android:icon="@drawable/ic_baseline_share_24"
+            android:title="@string/share" />
+        <item
+            android:id="@+id/settingsFragment"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="Settings" />
+        <item
+            android:id="@+id/reviewAndEarn"
+            android:icon="@drawable/ic_baseline_attach_money_24"
+            android:title="Review College And  Earn" />
+
+    </group>
+</menu>
