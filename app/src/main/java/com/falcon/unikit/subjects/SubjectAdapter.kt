@@ -61,7 +61,7 @@ class SubjectAdapter(
             /*
             NAVIGATION KA CODE (OBVIOUSLY WITHOUT ARGUMENTS)
             val navController = Navigation.findNavController(it)
-            navController.navigate(R.id.FirstFragment)
+            navController.navigate(R.id.LoginFragment)
              */
             if (getItemViewType(position) == TYPE_SUBJECT) {
                 onSubjectClick(getSubject(position))
