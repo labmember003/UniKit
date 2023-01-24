@@ -11,7 +11,7 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_notes" >
         <argument android:name="Notes"
-            app:argType="com.falcon.usarcompanion.network.Section" />
+            app:argType="com.falcon.unikit.network.Section" />
     </fragment>
 
     <fragment
@@ -20,7 +20,7 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_papers" >
         <argument android:name="papers"
-            app:argType="com.falcon.usarcompanion.network.Section" />
+            app:argType="com.falcon.unikit.network.Section" />
     </fragment>
 
     <fragment
@@ -29,7 +29,7 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_books" >
         <argument android:name="books"
-            app:argType="com.falcon.usarcompanion.network.Section" />
+            app:argType="com.falcon.unikit.network.Section" />
     </fragment>
     <fragment
         android:id="@+id/navigation4"
@@ -37,7 +37,7 @@
         android:label="Playlists"
         tools:layout="@layout/fragment_playlists">
         <argument android:name="Playlists"
-            app:argType="com.falcon.usarcompanion.network.Section"/>
+            app:argType="com.falcon.unikit.network.Section"/>
     </fragment>
     <fragment
         android:id="@+id/navigation5"
@@ -45,6 +45,6 @@
         android:label="Syllabus"
         tools:layout="@layout/fragment_syllabus">
         <argument android:name="Syllabus"
-            app:argType="com.falcon.usarcompanion.network.Section" />
+            app:argType="com.falcon.unikit.network.Section" />
     </fragment>
 </navigation>
