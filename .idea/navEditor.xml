@@ -296,6 +296,18 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="userDataFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-1115" />
+                            <option name="y" value="-350" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="webviewFragment">
                     <value>
                       <LayoutPositions>

@@ -6,5 +6,5 @@ import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 class CountriesResponse (
-    @Json(name = "geonames") val geonames: List<GeonameCountry>
+    @Json val countryListt: List<Country>,
 ): Serializable

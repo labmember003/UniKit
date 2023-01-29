@@ -85,6 +85,9 @@
             app:destination="@id/BranchesTabbedFragment"
             app:enterAnim="@anim/fade_in"
             />
+        <action
+            android:id="@+id/action_resources_to_userDataFragment"
+            app:destination="@id/userDataFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -110,6 +113,10 @@
         android:name="com.falcon.unikit.ui.main.SocietyFragment"
         android:label="Societies"
         tools:layout="@layout/fragment_society" />
+    <fragment
+        android:id="@+id/userDataFragment"
+        android:name="com.falcon.unikit.login.UserDataFragment"
+        android:label="UserDataFragment" />
 </navigation>
 <!--
 app:exitAnim="@anim/fade_out"

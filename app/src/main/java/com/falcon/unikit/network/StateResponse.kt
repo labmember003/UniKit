@@ -6,5 +6,5 @@ import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 class StateResponse (
-    @Json(name = "name") val cityName: List<GeonameCity>
+    @Json(name = "name") val cityName: String
 ): Serializable

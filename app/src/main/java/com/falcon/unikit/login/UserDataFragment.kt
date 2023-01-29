@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.falcon.unikit.databinding.FragmentUserDataBinding
 import com.falcon.unikit.network.RegionApi
+import com.falcon.unikit.network.StateResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -48,10 +49,12 @@ class UserDataFragment : Fragment() {
 //        spinnerCity.adapter = adapter2
 //        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 //
-        val geocoder = Geocoder(requireContext(), Locale.getDefault())
-        val addresses = geocoder.getFromLocationName("Australia", 100)
-        val cityNames = addresses?.mapNotNull { it.locality }
+//        val geocoder = Geocoder(requireContext(), Locale.getDefault())
+//        val addresses = geocoder.getFromLocationName("Australia", 100)
+//        val cityNames = addresses?.mapNotNull { it.locality }
 //        Toast.makeText(requireContext(), cityNames?.size.toString(), Toast.LENGTH_SHORT).show()
+
+
 
 
 
@@ -60,17 +63,44 @@ class UserDataFragment : Fragment() {
         coroutineScope.launch {
             try {
                 Toast.makeText(requireContext(), "IN", Toast.LENGTH_SHORT).show()
-                val countryList = RegionApi.apiService.getCountriesAsync().await().geonames
-                val a = countryList.size
-                Toast.makeText(requireContext(), a, Toast.LENGTH_SHORT).show()
-                Toast.makeText(requireContext(), countryList.size, Toast.LENGTH_SHORT).show()
+                var countryList = RegionApi.apiService.getCountriesAsync().await().map { it.countryName } as MutableList<String>
+                val adapter2 = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, countryList)
+                binding.countriesAutoCompleteTextView.setAdapter(adapter2)
+//                val stateListOfCountry = RegionApi.apiService.getStates().await()[1].cityName
+//                binding.countriesAutoCompleteTextView.setOnItemClickListener()
+//                countryList[0]
+                var statesList = RegionApi.apiService.getStates().await().map { it.cityName } as MutableList<String>
+                binding.countriesAutoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+//                    Toast.makeText(requireContext(), position, Toast.LENGTH_SHORT).show()
+//                    val stateListOfCountry = RegionApi.apiService.getStates().await()[position].cityName
+//                    getStates().await().map { it.cityName } as MutableList<String>
+//                    val stateListOfCountry = RegionApi.apiService.getStates().await()
+//                    [position].cityName
+//                        setStateList(stateListOfCountry, position)
+                }
+//                fun setStateList(stateListOfCountry: String, position: Int) {
+
+//                }
             } catch (e: Exception) {
                 Log.e("tatti", e.stackTraceToString())
                 Toast.makeText(requireContext(), "OUT", Toast.LENGTH_SHORT).show()
             }
         }
-//        val countryList  = RegionApi.apiService.getCountriesAsync().geonames
-//        Toast.makeText(requireContext(), countryList?.size ?: 4, Toast.LENGTH_SHORT).show()
+
+        var viewModelJobb = Job()
+        val coroutineScopee = CoroutineScope(viewModelJobb + Dispatchers.Main )
+        coroutineScopee.launch {
+            try {
+                Toast.makeText(requireContext(), "INn", Toast.LENGTH_SHORT).show()
+                val stateList = RegionApi.apiService.getStates().await().map { it.cityName } as MutableList<String>
+                val adapter3 = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, stateList)
+                binding.statesAutoCompleteTextView.setAdapter(adapter3)
+//                Toast.makeText(requireContext(), stateList[5], Toast.LENGTH_SHORT).show()
+            } catch (e: Exception) {
+                Log.e("tatti", e.stackTraceToString())
+                Toast.makeText(requireContext(), "OUT", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         return binding.root
 
@@ -87,3 +117,6 @@ class UserDataFragment : Fragment() {
 
 
 }
+/*
+val stateListOfCountry = RegionApi.apiService.getStates().await()[position].cityName
+ */
