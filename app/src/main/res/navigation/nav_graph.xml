@@ -6,39 +6,6 @@
     app:startDestination="@id/resources">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.falcon.unikit.login.LoginFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-        <action
-            android:id="@+id/action_FirstFragment_to_campusMap"
-            app:destination="@id/campusMap" />
-
-        <action
-            android:id="@+id/action_FirstFragment_to_subjectsFragment"
-            app:destination="@id/subjectsFragment" />
-        <action
-            android:id="@+id/action_FirstFragment_to_BranchesTabbedFragment"
-            app:destination="@id/BranchesTabbedFragment" />
-        <action
-            android:id="@+id/action_FirstFragment_to_resources"
-            app:destination="@id/resources" />
-    </fragment>
-    <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.falcon.unikit.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/campusMap"
         android:name="com.falcon.unikit.CampusMap"
         android:label="Campus Map"
@@ -116,7 +83,7 @@
     <fragment
         android:id="@+id/userDataFragment"
         android:name="com.falcon.unikit.login.UserDataFragment"
-        android:label="UserDataFragment" />
+        android:label="Account Details" />
 </navigation>
 <!--
 app:exitAnim="@anim/fade_out"
