@@ -2,13 +2,16 @@ package com.falcon.unikit.login
 
 import RegionApi
 import android.R
+import android.os.Build
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.falcon.unikit.databinding.FragmentUserDataBinding
 import kotlinx.coroutines.CoroutineScope
@@ -111,6 +114,7 @@ class UserDataFragment : Fragment() {
     private var _binding: FragmentUserDataBinding? = null
     private val binding get() = _binding!!
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -126,7 +130,7 @@ class UserDataFragment : Fragment() {
                 val countryList =  countryLists.map { it.countryName } as MutableList<String>
                 val adapter2 = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, countryList)
                 binding.countriesAutoCompleteTextView.setAdapter(adapter2)
-                var statesList = RegionApi.apiService.getStates("IN").await().map { it.cityName } as MutableList<String>
+                binding.countriesAutoCompleteTextView.inputType = InputType.TYPE_CLASS_TEXT
                 binding.countriesAutoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
                     binding.statesAutoCompleteTextView.setText("City")
                     countryCode = countryLists[position].countryCode
@@ -142,6 +146,11 @@ class UserDataFragment : Fragment() {
                         binding.statesAutoCompleteTextView.setAdapter(adapter3)
                     }
                 }
+//                binding.countriesAutoCompleteTextView.setOnClickListener {
+//                    Toast.makeText(requireContext(), "Vietnam Nimbu", Toast.LENGTH_SHORT).show()
+//                    changeInputType("")
+//                }
+//                binding.countriesAutoCompleteTextView.inputType = InputType.TYPE_CLASS_TEXT
             } catch (e: Exception) {
                 Log.e("tatti", e.stackTraceToString())
                 Toast.makeText(requireContext(), "OUT", Toast.LENGTH_SHORT).show()
@@ -154,6 +163,10 @@ class UserDataFragment : Fragment() {
         val adapter5 = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, listOfGraduationYear)
         binding.graduationYearAutoCompleteTextView.setAdapter(adapter5)
         return binding.root
+    }
+
+    private fun changeInputType(s: String) {
+        binding.countriesAutoCompleteTextView.inputType = InputType.TYPE_CLASS_TEXT
     }
 
     override fun onDestroyView() {
