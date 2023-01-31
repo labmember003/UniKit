@@ -12,7 +12,10 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.falcon.unikit.databinding.FragmentUserDataBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -123,6 +126,9 @@ class UserDataFragment : Fragment() {
         _binding = FragmentUserDataBinding.inflate(inflater, container, false)
         val viewModelJob = Job()
         val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+        binding.submitButton.setOnClickListener {
+            
+        }
         coroutineScope.launch {
             try {
                 Toast.makeText(requireContext(), "IN", Toast.LENGTH_SHORT).show()
@@ -130,8 +136,27 @@ class UserDataFragment : Fragment() {
                 val countryList =  countryLists.map { it.countryName } as MutableList<String>
                 val adapter2 = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, countryList)
                 binding.countriesAutoCompleteTextView.setAdapter(adapter2)
-                binding.countriesAutoCompleteTextView.inputType = InputType.TYPE_CLASS_TEXT
+
+
+
+
+
+
+                // THIS LINE OF CODE HAS FUCKED ME HARD
+                // LGAO THO INDIA KE STATES HE DISPLAY NHI HO RRHE......WHY?
+
+//                binding.countriesAutoCompleteTextView.inputType = InputType.TYPE_CLASS_TEXT
+
+
+
+
+
+
+
+
                 binding.countriesAutoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
+//                    meoow("change to none")
+                    Toast.makeText(requireContext(), "setOnItemChangeListener", Toast.LENGTH_SHORT).show()
                     binding.statesAutoCompleteTextView.setText("City")
                     countryCode = countryLists[position].countryCode
                     coroutineScope.launch {
@@ -146,11 +171,12 @@ class UserDataFragment : Fragment() {
                         binding.statesAutoCompleteTextView.setAdapter(adapter3)
                     }
                 }
-//                binding.countriesAutoCompleteTextView.setOnClickListener {
-//                    Toast.makeText(requireContext(), "Vietnam Nimbu", Toast.LENGTH_SHORT).show()
-//                    changeInputType("")
-//                }
-//                binding.countriesAutoCompleteTextView.inputType = InputType.TYPE_CLASS_TEXT
+                binding.countriesAutoCompleteTextView.doAfterTextChanged {
+
+                }
+                binding.countriesAutoCompleteTextView.doOnTextChanged { text, start, before, count ->
+
+                }
             } catch (e: Exception) {
                 Log.e("tatti", e.stackTraceToString())
                 Toast.makeText(requireContext(), "OUT", Toast.LENGTH_SHORT).show()
@@ -163,6 +189,10 @@ class UserDataFragment : Fragment() {
         val adapter5 = ArrayAdapter(requireContext(), R.layout.simple_dropdown_item_1line, listOfGraduationYear)
         binding.graduationYearAutoCompleteTextView.setAdapter(adapter5)
         return binding.root
+    }
+
+    private fun meoow(s: String) {
+        binding.countriesAutoCompleteTextView.inputType = InputType.TYPE_NULL
     }
 
     private fun changeInputType(s: String) {

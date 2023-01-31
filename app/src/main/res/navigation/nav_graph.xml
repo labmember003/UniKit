@@ -83,7 +83,11 @@
     <fragment
         android:id="@+id/userDataFragment"
         android:name="com.falcon.unikit.login.UserDataFragment"
-        android:label="Account Details" />
+        android:label="Account Details" >
+        <action
+            android:id="@+id/action_userDataFragment_to_BranchesTabbedFragment"
+            app:destination="@id/BranchesTabbedFragment" />
+    </fragment>
 </navigation>
 <!--
 app:exitAnim="@anim/fade_out"
