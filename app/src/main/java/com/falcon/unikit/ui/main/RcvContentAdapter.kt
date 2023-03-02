@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.falcon.unikit.R
@@ -16,12 +17,13 @@ import com.google.android.material.imageview.ShapeableImageView
 class RcvContentAdapter(val context: Context, private val contents: List<Content>,
                         private val sectionType : String
                         , private val onContentClick : (String, String) -> Unit
-    ): RecyclerView.Adapter<RcvContentAdapter.RcvContentViewHolder>(){
+                        , private val shareFile : (String) -> Unit
+): RecyclerView.Adapter<RcvContentAdapter.RcvContentViewHolder>(){
     private var lastPosition : Int = -1
     private lateinit var iconURL: String
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RcvContentViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.recyclerview_subjects_item_layout, parent, false)
+        val view = inflater.inflate(R.layout.recyclerview_content_item_layout, parent, false)
         return RcvContentViewHolder(view)
     }
 
@@ -40,24 +42,38 @@ class RcvContentAdapter(val context: Context, private val contents: List<Content
         // put notes, files, books icon hardcoded and use it like above code !!!
         when (sectionType) {
             "Notes & Files" -> {
-                //iconURL = contents[position].sourceUrl
                 holder.icon.setImageResource(R.drawable.notes)
+                holder.shareButton.setOnClickListener {
+                    shareFile(extractProperName(contents[position].sourceUrl))
+                }
             }
             "papers" -> {
-                //iconURL = contents[position].sourceUrl
                 holder.icon.setImageResource(R.drawable.exam)
+                holder.shareButton.setOnClickListener {
+                    shareFile(extractProperName(contents[position].sourceUrl))
+                }
             }
             "books" -> {
                 holder.icon.setImageResource(R.drawable.book)
+                holder.shareButton.setOnClickListener {
+                    shareFile(extractProperName(contents[position].sourceUrl))
+                }
             }
             "Playlists" -> {
                 holder.icon.setImageResource(R.drawable.playlisticon)
+                holder.shareButton.setOnClickListener {
+                    shareFile(contents[position].sourceUrl)
+                }
             }
             "Syllabus" -> {
                 holder.icon.setImageResource(R.drawable.syllabusicon)
+                holder.shareButton.setOnClickListener {
+                    shareFile(extractProperName(contents[position].sourceUrl))
+                }
             }
         }
         setAnimation(holder.itemView.rootView, position)
+
     }
 
     private fun extractProperName(sourceUrl: String): String {
@@ -75,6 +91,7 @@ class RcvContentAdapter(val context: Context, private val contents: List<Content
     class RcvContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val contentName: TextView = itemView.findViewById(R.id.subjectName)
         val icon: ShapeableImageView = itemView.findViewById(R.id.subjectIcon)
+        val shareButton: ImageView = itemView.findViewById(R.id.shareButton)
     }
     private fun setAnimation(viewToAnimate: View, position: Int) {
         if (position > lastPosition) {
@@ -85,4 +102,8 @@ class RcvContentAdapter(val context: Context, private val contents: List<Content
         }
     }
 }
+
+
+
+
 

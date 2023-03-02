@@ -4,16 +4,20 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.falcon.unikit.databinding.FragmentPlaylistsBinding
 import com.falcon.unikit.network.Section
 import com.falcon.unikit.ui.main.RcvContentAdapter
+import java.io.File
 
 
 class PlaylistsFragment : Fragment() {
@@ -52,7 +56,7 @@ class PlaylistsFragment : Fragment() {
             binding.sale = true
         }
 
-        val adapter = RcvContentAdapter(requireContext(), playlists?.contents!!, playlists.title, ::onContentClick)
+        val adapter = RcvContentAdapter(requireContext(), playlists?.contents!!, playlists.title, ::onContentClick, ::shareFile)
         binding.rvContents.adapter = adapter
         binding.rvContents.layoutManager = LinearLayoutManager(requireContext())
         //
@@ -67,8 +71,16 @@ class PlaylistsFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_mainActivity3)
         }
      */
-    fun onContentClick(fileURL: String, titleAndFileName: String) {
-        //(activity as ContentActivity?)!!.startDownloading(fileURL, titleAndFileName)
+    private fun shareFile(fileName: String) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, fileName)
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(shareIntent)
+    }
+    private fun onContentClick(fileURL: String, titleAndFileName: String) {
         openPlaylist(fileURL)
     }
     private fun openPlaylist (fileURL: String) {
