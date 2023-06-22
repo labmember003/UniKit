@@ -61,6 +61,7 @@
         />
 
     <Button
+        android:id="@+id/registerButton"
         android:layout_width="360dp"
         android:layout_height="60dp"
         android:background="@drawable/login_btn"

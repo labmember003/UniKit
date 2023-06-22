@@ -27,8 +27,8 @@ class Resources : Fragment() {
             val bundle = Bundle()
             bundle.putInt("Year", currentYear)
             it.setOnClickListener {
-//                findNavController().navigate(R.id.action_resources_to_BranchesTabbedFragment, bundle)
-                findNavController().navigate(R.id.action_resources_to_userDataFragment, bundle)
+                findNavController().navigate(R.id.action_resources_to_BranchesTabbedFragment, bundle)
+//                findNavController().navigate(R.id.action_resources_to_userDataFragment, bundle)
             }
         }
         return binding.root

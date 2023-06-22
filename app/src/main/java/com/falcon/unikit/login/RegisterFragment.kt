@@ -22,10 +22,16 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        binding.registerButton.setOnClickListener {
+            registerUser()
+        }
         return binding.root
 
+    }
+
+    private fun registerUser() {
+        TODO("Not yet implemented")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

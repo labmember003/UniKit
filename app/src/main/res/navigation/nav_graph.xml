@@ -85,9 +85,26 @@
         android:name="com.falcon.unikit.login.UserDataFragment"
         android:label="Account Details" >
         <action
-            android:id="@+id/action_userDataFragment_to_BranchesTabbedFragment"
-            app:destination="@id/BranchesTabbedFragment" />
+            android:id="@+id/action_userDataFragment_to_resources"
+            app:destination="@id/resources" />
     </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.falcon.unikit.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_resources"
+            app:destination="@id/resources" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.falcon.unikit.login.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
 </navigation>
 <!--
 app:exitAnim="@anim/fade_out"

@@ -127,7 +127,7 @@ class UserDataFragment : Fragment() {
         val viewModelJob = Job()
         val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
         binding.submitButton.setOnClickListener {
-            
+            findNavController().navigate(com.falcon.unikit.R.id.action_userDataFragment_to_resources)
         }
         coroutineScope.launch {
             try {
@@ -156,7 +156,9 @@ class UserDataFragment : Fragment() {
 
                 binding.countriesAutoCompleteTextView.setOnItemClickListener { parent, view, position, id ->
 //                    meoow("change to none")
-                    Toast.makeText(requireContext(), "setOnItemChangeListener", Toast.LENGTH_SHORT).show()
+//                    countryList
+                    Toast.makeText(requireContext(), countryList[position], Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(requireContext(), "setOnItemChangeListener", Toast.LENGTH_SHORT).show()
                     binding.statesAutoCompleteTextView.setText("City")
                     countryCode = countryLists[position].countryCode
                     coroutineScope.launch {

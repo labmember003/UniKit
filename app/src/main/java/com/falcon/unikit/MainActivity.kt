@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -80,6 +81,16 @@ class MainActivity : AppCompatActivity()  {
             "Hi, $name"
         }
         binding.navView.getHeaderView(0).findViewById<TextView>(R.id.userName).text = name
+
+
+        // Code to remove toolbar if its the loginFragment/FirstFragment
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.loginFragment || destination.id == R.id.registerFragment) {
+                binding.toolbar.visibility = View.GONE
+            } else {
+                binding.toolbar.visibility = View.VISIBLE
+            }
+        }
     }
 
 
