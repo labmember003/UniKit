@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.falcon.unikit.R
 import com.falcon.unikit.databinding.FragmentRegisterBinding
 
 /**
@@ -31,7 +33,8 @@ class RegisterFragment : Fragment() {
     }
 
     private fun registerUser() {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_registerFragment_to_resources)
+//        TODO("Not yet implemented")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
