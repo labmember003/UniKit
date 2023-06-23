@@ -5,50 +5,89 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.falcon.unikit.R
 import com.falcon.unikit.databinding.FragmentRegisterBinding
+import com.falcon.unikit.model.UserRequest
+import com.falcon.unikit.utils.NetworkResult
+import com.falcon.unikit.utils.TokenManager
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
+@AndroidEntryPoint
 class RegisterFragment : Fragment() {
 
     private var _binding: FragmentRegisterBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
+    private val authViewModel by viewModels<AuthViewModel>()
 
+    @Inject
+    lateinit var tokenManager: TokenManager
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRegisterBinding.inflate(inflater, container, false)
-        binding.registerButton.setOnClickListener {
-            registerUser()
+        if (tokenManager.getToken() != null) {
+            findNavController().navigate(R.id.action_registerFragment_to_resources)
         }
         return binding.root
-
-    }
-
-    private fun registerUser() {
-        findNavController().navigate(R.id.action_registerFragment_to_resources)
-//        TODO("Not yet implemented")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.buttonFirst.setOnClickListener {
-//            //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//            //findNavController().navigate(R.id.action_FirstFragment_to_campusMap)
-//            //findNavController().navigate(R.id.action_FirstFragment_to_aboutFragment)
-//            //findNavController().navigate(R.id.action_FirstFragment_to_yearTabbedActivity)
-//            //findNavController().navigate(R.id.action_FirstFragment_to_overviewFragment)
-//            //findNavController().navigate(R.id.action_FirstFragment_to_BranchesTabbedFragment)
-//            findNavController().navigate(R.id.action_FirstFragment_to_resources)
-//        }
+        binding.loginPanel.setOnClickListener {
+            val validateResult = validateUserInput()
+            if (validateResult.first) {
+                binding.loginButton.visibility = View.GONE
+                binding.animationView.visibility = View.VISIBLE
+                binding.animationView.setAnimation("loading-dots.json")
+                binding.animationView.playAnimation()
+                authViewModel.registerUser(getUserRequest())
+            } else {
+                binding.errorTextview.text = validateResult.second
+                binding.errorTextview.visibility = View.VISIBLE
+            }
+        }
+        binding.accountExistLL.setOnClickListener {
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
+
+        bindObservers()
+    }
+
+    private fun getUserRequest(): UserRequest {
+        return UserRequest(binding.EmailText.text.toString(), binding.password.text.toString(), binding.username.text.toString() )
+    }
+
+    private fun validateUserInput(): Pair<Boolean, String> {
+        val userRequest = getUserRequest()
+        return authViewModel.validateCredentials(userRequest.username, userRequest.email, userRequest.password, false)
+    }
+
+    private fun bindObservers() {
+        authViewModel.userResponseLiveData.observe(viewLifecycleOwner) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    tokenManager.saveToken(it.data!!.token)
+                    findNavController().navigate(R.id.action_registerFragment_to_resources)
+                }
+                is NetworkResult.Error -> {
+                    binding.errorTextview.text = it.message
+                    binding.errorTextview.visibility = View.VISIBLE
+                    binding.animationView.visibility = View.GONE
+                    binding.loginButton.visibility = View.VISIBLE
+                }
+                is NetworkResult.Loading -> {
+                    binding.loginButton.visibility = View.GONE
+                    binding.animationView.visibility = View.VISIBLE
+                    binding.animationView.setAnimation("loading-dots.json")
+                    binding.animationView.playAnimation()
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {
@@ -56,11 +95,3 @@ class RegisterFragment : Fragment() {
         _binding = null
     }
 }
-/*
-// CODE TO LAUNCH USAR IN GOOGLE MAPS
-val intent = Intent(
-    Intent.ACTION_VIEW,
-    Uri.parse("http://maps.google.com/maps?34.34&daddr=28.66488568388205, 77.30043327394083")
-)
-startActivity(intent)
- */
