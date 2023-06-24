@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
-
+    //    TODO("ANIMATION AND BACK BEHAVIOUR")
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
     private val authViewModel by viewModels<AuthViewModel>()
